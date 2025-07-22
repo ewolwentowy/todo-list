@@ -31,10 +31,9 @@ function sendTask() {
 
 <style scoped>
 
-button:disabled:hover {
+button:disabled {
   cursor: default;
-  pointer-events: none;
-
+  border: 1px solid gray;
 }
 
 </style>
