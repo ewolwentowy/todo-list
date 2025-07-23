@@ -15,7 +15,6 @@ function sendTask() {
   } else {
     info.value = 'Wpisz treść zadania!'
 
-
   }
 }
 
@@ -26,7 +25,7 @@ function sendTask() {
     <input type="text" v-model="newTask" placeholder="Dodaj zadanie" @keyup.enter="sendTask" autofocus/>
     <button @click="sendTask" v-bind:disabled="newTask.length === 0">Dodaj</button>
   </div>
-  <label for=''>{{ info }}</label>
+  <label >{{ info }}</label>
 </template>
 
 <style scoped>

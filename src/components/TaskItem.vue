@@ -1,14 +1,14 @@
 <script setup >
 
-const props = defineProps(['task'])
-const emit = defineEmits(['done', 'deleteTask'])
-function done() {
-emit('toggleDone', task.id)
+const   props  = defineProps(['task'])
+const emit = defineEmits(['toggleDone', 'deleteTask'])
 
+function toggleDone() {
+emit('toggleDone', props.task.id)
 }
-function deleteTask() {
-  emit('deleteTask', task.id)
 
+function deleteTask() {
+  emit('deleteTask', props.task.id)
 }
 
 </script>
@@ -16,15 +16,18 @@ function deleteTask() {
 
 <template>
 <div class="task-item">
-  <span>
+  <span v-bind:class="{done: props.task.done}">
 {{task.title}}
   </span>
-  <button @click="done">Gotowe</button>
+  <button @click="toggleDone">Gotowe</button>
   <button @click="deleteTask">Usuń</button>
 </div>
 </template>
 
 
 <style scoped>
-
+.done{
+  text-decoration-line: line-through;
+  color: gray;
+}
 </style>

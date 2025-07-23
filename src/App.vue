@@ -9,18 +9,19 @@ const handleResponse = (addTask) => {
     title: addTask,
     done: false
   }
-  arrTodo.push(obj)
+  arrTodo.value.push(obj)
   console.log(arrTodo.value)
 }
-const arrTodo = ref[{
+const arrTodo = ref([{
   id: 1,
   title: "Zadanie 1",
   done: false
-}]
+}])
 
 const handleToggleDone = (id) => {
   const task = arrTodo.value.find(task => task.id === id)
   task.done = !task.done
+
 }
 const handleDeleteTask = (id) => {
   arrTodo.value = arrTodo.value.filter(task => task.id !== id)
@@ -30,7 +31,9 @@ const handleDeleteTask = (id) => {
 <template>
   <h1>Lista zadań</h1>
   <TaskForm @addTask="handleResponse"/>
-  <TaskList :arrTodo="arrTodo" @toggleDone="handleToggleDone" @deleteTask="handleDeleteTask"/>
+  <TaskList :arrTodo="arrTodo"
+            @toggleDone="handleToggleDone"
+            @deleteTask="handleDeleteTask"/>
 </template>
 
 <style scoped>

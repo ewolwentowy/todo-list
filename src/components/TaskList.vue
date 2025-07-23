@@ -1,7 +1,7 @@
 <script setup>
 import TaskItem from "./TaskItem.vue";
 
-const props = defineProps(['arrTodo'])
+const props = defineProps(['arrTodo', 'handleToggleDone', 'handleDeleteTask'])
 const emit = defineEmits(['toggleDone', 'deleteTask'])
 </script>
 
@@ -11,8 +11,8 @@ const emit = defineEmits(['toggleDone', 'deleteTask'])
     <ul>
       <li v-for="task in arrTodo" :key="task.id">
         <TaskItem :task="task"
-                 @toggleDone= 'handleToggleDone'
-                  @deleteTask= 'handleDeleteTask'
+                  @toggleDone="() => $emit('toggleDone', task.id)"
+                  @deleteTask= "() => $emit('deleteTask', task.id)"
         />
       </li>
     </ul>
