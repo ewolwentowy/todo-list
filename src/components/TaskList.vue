@@ -12,7 +12,7 @@ const emit = defineEmits(['toggleDone', 'deleteTask'])
       <li v-for="task in arrTodo" :key="task.id">
         <TaskItem :task="task"
                   @toggleDone="() => $emit('toggleDone', task.id)"
-                  @deleteTask= "() => $emit('deleteTask', task.id)"
+                  @deleteTask="() => $emit('deleteTask', task.id)"
         />
       </li>
     </ul>
@@ -22,5 +22,24 @@ const emit = defineEmits(['toggleDone', 'deleteTask'])
 </template>
 
 <style scoped>
+h3{
+  font-size: 30px;
+text-shadow: 1px 1px 2px black;
+}
+div{
+  margin: 10px;
+
+}
+ul{
+  list-style-type: none;
+}
+
+.task-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+}
 
 </style>

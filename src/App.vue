@@ -30,12 +30,28 @@ const handleDeleteTask = (id) => {
 
 <template>
   <h1>Lista zadań</h1>
-  <TaskForm @addTask="handleResponse"/>
-  <TaskList :arrTodo="arrTodo"
+  <div class="app">
+    <TaskForm @addTask="handleResponse"/>
+    <TaskList :arrTodo="arrTodo"
             @toggleDone="handleToggleDone"
             @deleteTask="handleDeleteTask"/>
+  </div>
 </template>
 
 <style scoped>
+h1{
 
+  display: flex;
+  text-align: center;
+  justify-content: center;
+margin: 20px;
+
+}
+app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
 </style>
