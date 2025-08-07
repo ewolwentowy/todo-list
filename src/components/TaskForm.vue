@@ -1,20 +1,22 @@
 <script setup>
-import {ref, defineEmits} from "vue";
-
-
-const emit = defineEmits(['zad'])
+import { ref } from 'vue'
 
 const zadanie = ref('')
-function przekaz(){
-  emit('zad', zadanie.value)
-  console.log(zadanie.value)
+
+const emit = defineEmits(['dodaj'])
+
+
+function przekaz (){
+  emit('dodaj', zadanie.value)
 }
 
 </script>
 
 <template>
 <input type="text" v-model="zadanie">
-  <button @click="przekaz" >dodaj</button>
+  <button @click="przekaz">dodaj</button>
+
+
 
 </template>
 

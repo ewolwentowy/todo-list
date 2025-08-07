@@ -1,19 +1,27 @@
 <script setup>
-import {ref, defineProps} from "vue";
+import { ref } from 'vue'
+const props = defineProps(['zad'])
 
-const props = defineProps(['tablica'])
+function usun(index) {
+emit('usun', index)
+}
 
-
-
+function gotowe(index) {
+  emit('gotowe', index)
+}
 
 </script>
 
 
 <template>
+
   <ul>
-    <li v-for="(zad, index) in tablica" :key='index' >{{zad}} <button>gotowe</button>
-  <button >usun</button></li>
+    <li v-for="(zadanie, index) in props.zad" :key="index">
+      {{ zadanie }} <button @click="gotowe"> gotowe</button> <button @click="usun"> usun</button>
+    </li>
   </ul>
+
+
 </template>
 
 
