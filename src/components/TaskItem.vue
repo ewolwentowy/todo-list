@@ -1,13 +1,14 @@
 <script setup>
-import { ref } from 'vue'
-const props = defineProps(['zad'])
 
-function usun(index) {
-emit('usun', index)
+
+const props = defineProps(['tablicaZadan' ])
+const emit = defineEmits(['usun', 'gotowe'])
+
+function usun() {
+  emit('usun', props.tablicaZadan.id)
 }
-
-function gotowe(index) {
-  emit('gotowe', index)
+function gotowe() {
+  emit('gotowe', props.tablicaZadan.id)
 }
 
 </script>
@@ -15,11 +16,9 @@ function gotowe(index) {
 
 <template>
 
-  <ul>
-    <li v-for="(zadanie, index) in props.zad" :key="index">
-      {{ zadanie }} <button @click="gotowe"> gotowe</button> <button @click="usun"> usun</button>
-    </li>
-  </ul>
+  <div>{{zad.tresc}}</div>
+  <button @click="gotowe">gotowe</button>
+  <button @click="usun">usun</button>
 
 
 </template>
