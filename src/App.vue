@@ -1,47 +1,40 @@
 <script setup>
 import TaskForm from "./components/TaskForm.vue";
-import {ref} from "vue";
+import {ref} from 'vue'
 import TaskList from "./components/TaskList.vue";
 
-
 const tablicaZadan = ref([{
-  id: Number,
-  tresc: String,
-  status: Boolean
+  id: 1,
+  tresc: 'zadanie',
+  status: false,
 }])
 
-function przejmij(dodaj) {
+function dodajZadanie(przekaz) {
   const obj = {
     id: tablicaZadan.value.length + 1,
-    tresc: dodaj,
-    status: false
+    tresc: przekaz,
+    status: false,
   }
   tablicaZadan.value.push(obj)
-  console.log(tablicaZadan.value)
+  console.log(tablicaZadan.value);
 }
-
-function gotoweZad(id) {
-  tablicaZadan.value.forEach(zad => {
-    if (zad.id === id) {
-      zad.status = true
-    }
-  })
-}
-
-function usunZad(id) {
-  tablicaZadan.value = tablicaZadan.value.filter(zad => zad.id !== id)
+function usunZadanie(id) {
+  tablicaZadan.value = tablicaZadan.value.filter(zadanie => zadanie.id !== id)
 
 }
-
-
-
+function gotoweZadanie(id) {
+  const zadanie = tablicaZadan.value.find(zadanie => zadanie.id === id)
+  zadanie.status = !zadanie.status
+}
 
 </script>
 
 <template>
-<task-form @dodaj="przejmij"/>
-  <task-list :tablicaZadan="tablicaZadan"  @gotowe="gotoweZad" @usun="usunZad"/>
-
+  <task-form @przekaz="dodajZadanie"/>
+  <task-list :tablicaZadan="tablicaZadan"
+             v-on:gotowe="gotoweZadanie"
+             v-on:usun="usunZadanie"
+  />
 </template>
 
 <style scoped>
