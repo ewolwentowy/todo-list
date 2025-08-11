@@ -2,34 +2,25 @@
 
 import TaskItem from "./TaskItem.vue";
 
- const props = defineProps(['tablicaZadan'])
- const emit = defineEmits(['gotowe', 'usun'])
+const props = defineProps(['tabZadania'])
+const emit = defineEmits(['gotowe', 'usun'])
 
 
 </script>
 
 <template>
-<h2>Lista zadań</h2>
+
   <ul>
-    <li v-for="zadanie in tablicaZadan" :key="zadanie.id">
-      <task-item :zadanie="zadanie"
-      v-on:gotowe="$emit('gotowe', zadanie.id)"
-      v-on:usun="$emit('usun', zadanie.id)"/>
+    <li v-for="zad in tabZadania" :key="zad.id">
+      <task-item :zad="zad"
+                 @gotowe="$emit('gotowe', zad.id)"
+                 @usun="$emit('usun', zad.id)"
+      />
     </li>
   </ul>
 
+
 </template>
-
-
-
-
-
-
-
-
-
-
-
 
 
 <style scoped>

@@ -3,37 +3,34 @@ import TaskForm from "./components/TaskForm.vue";
 import {ref} from 'vue'
 import TaskList from "./components/TaskList.vue";
 
-const tablicaZadan = ref([{
-  id: 1,
-  tresc: 'zadanie',
-  status: false,
-}])
+const tabZadania = ref([])
 
-function dodajZadanie(przekaz) {
-  const obj = {
-    id: tablicaZadan.value.length + 1,
-    tresc: przekaz,
-    status: false,
+function dodajZadanieDoTablicy(dodaj) {
+  const noweZadanie = {
+    id: tabZadania.value.length + 1,
+    trescZad: dodaj,
+    gotowe: false
   }
-  tablicaZadan.value.push(obj)
-  console.log(tablicaZadan.value);
+  tabZadania.value.push(noweZadanie)
 }
-function usunZadanie(id) {
-  tablicaZadan.value = tablicaZadan.value.filter(zadanie => zadanie.id !== id)
 
-}
 function gotoweZadanie(id) {
-  const zadanie = tablicaZadan.value.find(zadanie => zadanie.id === id)
-  zadanie.status = !zadanie.status
+  const zad = tabZadania.value.find(zad => zad.id === id)
+  zad.gotowe = !zad.gotowe
 }
+
+function usunZadanie(id) {
+  tabZadania.value = tabZadania.value.filter(zad => zad.id !== id)
+}
+
 
 </script>
 
 <template>
-  <task-form @przekaz="dodajZadanie"/>
-  <task-list :tablicaZadan="tablicaZadan"
-             v-on:gotowe="gotoweZadanie"
-             v-on:usun="usunZadanie"
+  <task-form @dodaj="dodajZadanieDoTablicy"/>
+  <task-list :tabZadania="tabZadania"
+             @gotowe="gotoweZadanie"
+             @usun="usunZadanie"
   />
 </template>
 
