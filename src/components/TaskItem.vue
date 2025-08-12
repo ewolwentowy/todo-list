@@ -1,15 +1,14 @@
 <script setup>
 
-const props = defineProps(['zad'])
-
+const props = defineProps(['zadanie'])
 const emit = defineEmits(['gotowe', 'usun'])
 
 function gotowe() {
-  emit('gotowe', props.zad.id)
+  emit('gotowe', props.zadanie.id)
 }
 
 function usun() {
-  emit('usun', props.zad.id)
+  emit('usun', props.zadanie.id)
 }
 
 </script>
@@ -17,11 +16,15 @@ function usun() {
 
 <template>
 
-  <div :class="{gotowe: zad.gotowe}">
-    {{ zad.trescZad }}
+  <div>
+    <span v-bind:class="{gotowe: zadanie.gotowe}">
+
+    {{ zadanie.tresc }}
+    </span>
     <button @click="gotowe">gotowe</button>
-    <button @click="usun">usun</button>
+    <button @click="usun">usuń</button>
   </div>
+
 
 </template>
 
@@ -30,6 +33,5 @@ function usun() {
 .gotowe {
   text-decoration: line-through;
 }
-
 
 </style>

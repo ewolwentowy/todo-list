@@ -2,24 +2,24 @@
 
 import TaskItem from "./TaskItem.vue";
 
-const props = defineProps(['tabZadania'])
+const props = defineProps(['tablicaZadan'])
 const emit = defineEmits(['gotowe', 'usun'])
-
 
 </script>
 
 <template>
-
-  <ul>
-    <li v-for="zad in tabZadania" :key="zad.id">
-      <task-item :zad="zad"
-                 @gotowe="$emit('gotowe', zad.id)"
-                 @usun="$emit('usun', zad.id)"
+  <h2>
+    Lista zadań:
+  </h2>
+  <ul v-if="tablicaZadan.length > 0">
+    <li v-for="zadanie in tablicaZadan" :key="zadanie.id">
+      <task-item :zadanie="zadanie"
+                 @gotowe="$emit('gotowe', zadanie.id)"
+                 @usun="$emit('usun', zadanie.id)"
       />
     </li>
   </ul>
-
-
+  <label v-else>brak zadań na dziś!</label>
 </template>
 
 

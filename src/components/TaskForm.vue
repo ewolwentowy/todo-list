@@ -1,28 +1,19 @@
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-const emit = defineEmits(['dodaj'])
 const zadanie = ref('')
-const info = ref('')
+const emit = defineEmits(['przekaz'])
 
 function przekazZadanie() {
-  if(zadanie.value !== '') {
-    emit('dodaj', zadanie.value)
-    zadanie.value = ''
-    info.value = ''
-  } else {
-    info.value = 'podaj treść zadania'
-
-  }
+  emit('przekaz', zadanie.value)
+  zadanie.value = ''
 }
-
 </script>
 
 <template>
-  <input type="text" v-model="zadanie" @keyup.enter="przekazZadanie" autofocus placeholder="dodaj zadanie">
+
+  <input type="text" v-model="zadanie" placeholder="dodaj zadanie" autofocus @keyup.enter="przekazZadanie"/>
   <button @click="przekazZadanie">dodaj</button>
-  <br>
-  <label>{{ info }}</label>
 </template>
 
 
