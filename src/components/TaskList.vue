@@ -14,8 +14,8 @@ const emit = defineEmits(['gotowe', 'usun'])
   <ul v-if="tablicaZadan.length > 0">
     <li v-for="zadanie in tablicaZadan" :key="zadanie.id">
       <task-item :zadanie="zadanie"
-                  @gotowe="$emit('gotowe', zadanie.id)"
-                 @usun="$emit('usun', zadanie.id)"
+                  @gotowe="$emit('gotowe', $event)"
+                 @usun="$emit('usun', $event )"
       />
     </li>
   </ul>
