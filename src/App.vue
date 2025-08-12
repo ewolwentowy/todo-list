@@ -5,33 +5,35 @@ import TaskList from "./components/TaskList.vue";
 
 const tablicaZadan = ref([])
 
-function dodajDoTablicy(przekaz) {
-  const obj = {
+function dodajZadanie(przekaz){
+  const objZad = {
     id: tablicaZadan.value.length + 1,
-    tresc: przekaz,
+    tekst: przekaz,
     gotowe: false
   }
-  tablicaZadan.value.push(obj)
+  tablicaZadan.value.push(objZad)
 }
 
-function zadanieGotowe(id) {
-const zadanie = tablicaZadan.value.find(zadanie => zadanie.id === id)
-  zadanie.gotowe = !zadanie.gotowe
+function gotoweZadanie(id){
+  const zad = tablicaZadan.value.find(zad => zad.id === id)
+  zad.gotowe = !zad.gotowe
 }
 
-function zadanieUsun(id) {
-tablicaZadan.value = tablicaZadan.value.filter(zadanie => zadanie.id !== id)
+function usunZadanie(id){
+  tablicaZadan.value = tablicaZadan.value.filter(zad => zad.id !== id)
 }
+
+
 
 </script>
 
 <template>
-  <task-form @przekaz="dodajDoTablicy"/>
-  <task-list :tablicaZadan="tablicaZadan"
-             @gotowe="zadanieGotowe"
-             @usun="zadanieUsun"
-  />
+  <task-form @przekaz="dodajZadanie"/>
+<task-list :tablicaZadan="tablicaZadan"
+                    @gotowe="gotoweZadanie"
+           @usun="usunZadanie"
 
+/>
 </template>
 
 <style scoped>
